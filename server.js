@@ -3,7 +3,7 @@ const connectDb = require("./config/db");
 const { post, user } = require("./routes/index");
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-// const jwt = require('./config/jwt');
+const jwt = require('./config/jwt');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 // const errorHandler = require('./middlewares/errorHandler');
@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.use(jwt());
+app.use(jwt());
 
 const swaggerOptions = {
     swaggerDefinition: {
@@ -30,7 +30,7 @@ const swaggerOptions = {
 }
 
 app.use('/posts', post)
-// app.use('/users', user)
+app.use('/users', user)
 
 // app.use(errorHandler);
 
