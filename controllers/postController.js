@@ -1,4 +1,7 @@
+const fs = require('fs');
+const path = require('path');
 const Post = require('../models/post');
+const appDir = path.dirname(require.main.filename);
 
 async function getAllPosts() {
     try {
@@ -20,17 +23,27 @@ async function getPostById(id) {
             return { message: `Cannot find the post with ID ${id}` };
         }
 
-        return post;
+        return post.toJSON();
     } catch (err) {
         throw new Error(err.message);
     }
+}
+
+function buildFiles(files) {
+    return files.map((file) => {
+        return {
+            name: file.filename,
+            file: fs.readFileSync(path.join(appDir + '/resources/static/assets/uploads/' + file.filename))
+        };
+    });
 }
 
 async function addPost(body) {
     const newPost = new Post(body);
 
     try {
-        return await newPost.save();
+        await newPost.save();
+        return newPost.toJSON();
     } catch (err) {
         throw new Error(err.message);
     }
@@ -47,7 +60,7 @@ async function removePost(id) {
         await postToRemove.remove()
         
         return {
-            deletedPost: postToRemove,
+            deletedPost: postToRemove.toJSON()
         };
     } catch (err) {
         throw new Error(err.message);
@@ -58,5 +71,6 @@ module.exports = {
     getAllPosts,
     getPostById,
     addPost,
-    removePost
+    removePost,
+    buildFiles
 }

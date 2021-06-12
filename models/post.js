@@ -6,10 +6,10 @@ const fileSchema = new Schema({
         type: String,
         required: true
     },
-    sourcePath: {
-        type: String,
-        required: true
-    },
+    file: {
+        data: Buffer,
+        contentType: String
+    }
 });
 
 const postSchema = new Schema({
@@ -28,6 +28,14 @@ const postSchema = new Schema({
     files: {
         type: [fileSchema],
     },
+});
+
+postSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret) {
+        delete ret._id;
+    }
 });
 
 const Post = mongoose.model('Post', postSchema);

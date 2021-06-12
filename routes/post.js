@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-let { getAllPosts, getPostById, addPost, removePost } = require('../controllers/postController')
+const uploadFile = require("../middlewares/upload");
+const { getAllPosts, getPostById, addPost, removePost, buildFiles } = require('../controllers/postController')
 
 /**
  * @swagger
@@ -77,20 +78,20 @@ router.get('/:id', async (req, res) => {
  *       201:
  *         description: New post created
  */
-router.post('/:id', async (req, res) => {
+router.post('/:id', uploadFile.array('files', 10), async (req, res) => {
     if (!req.params.id) res.status(400).json({ message: `Missing post ID in params` });
     if (!req.body) res.status(400).json({ message: `Missing post body` });
     
-    let body = {
+    const body = {
         id: req.params.id,
         name: req.body.name,
         description: req.body.description,
     };
 
-    if (req.body.files) body.files = req.body.files;
+    if (req.files) body.files = buildFiles(req.files);
 
     try {
-        let response = await addPost(body);
+        const response = await addPost(body);
         res.status(201).json(response);
     }
     catch (e) {

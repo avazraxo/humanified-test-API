@@ -11,14 +11,7 @@ async function getUserByUserName(userName) {
             return { message: `Cannot find the user with user name ${userName}` };
         }
 
-        return {
-            userName: user.userName,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            title: user.title,
-            followers: user.followers,
-            following: user.following
-        };
+        return user.toJSON();
     } catch (err) {
         throw new Error(err.message);
     }
@@ -54,7 +47,7 @@ async function addUser(body) {
 
     try {
         await newUser.save();
-        return newUser;
+        return newUser.toJSON();
     } catch (err) {
         throw new Error(err.message);
     }
@@ -71,7 +64,7 @@ async function removeUser(userName) {
         await userToRemove.remove()
         
         return {
-            deletedUser: userToRemove,
+            deletedUser: userToRemove.toJSON()
         };
     } catch (err) {
         throw new Error(err.message);
