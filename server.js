@@ -6,7 +6,7 @@ const swaggerUi = require('swagger-ui-express');
 const jwt = require('./config/jwt');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-// const errorHandler = require('./middlewares/errorHandler');
+const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 connectDb();
@@ -32,7 +32,7 @@ const swaggerOptions = {
 app.use('/posts', post)
 app.use('/users', user)
 
-// app.use(errorHandler);
+app.use(errorHandler);
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
