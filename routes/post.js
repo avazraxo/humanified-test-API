@@ -56,24 +56,28 @@ router.get('/:id', async (req, res) => {
  * @swagger
  * /posts/{id}:
  *   post:
+ *     consumes:
+ *      - multipart/form-data
  *     parameters:
  *      - in: path
  *        name: id
  *        required: true
  *        type: string
  *        description: The post ID.
- *      - in: body
- *        name: post
- *        description: New post
- *        schema:
- *          type: object
- *          properties:
- *            name:
- *              type: string
- *            description:
- *              type: string
- *            files:
- *              type: [object]
+ *      - in: formData
+ *        name: name
+ *        description: The name of the post.
+ *        type: string
+ *        required: true
+ *      - in: formData
+ *        name: description
+ *        description: The description of the post.
+ *        type: string
+ *        required: true
+ *      - in: formData
+ *        name: files
+ *        description: Files of the post.
+ *        type: file
  *     responses:
  *       201:
  *         description: New post created

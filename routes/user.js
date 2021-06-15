@@ -69,11 +69,6 @@ router.get('/:userName', async (req, res) => {
  * /users/register:
  *   post:
  *     parameters:
- *      - in: path
- *        name: userName
- *        required: true
- *        type: string
- *        description: The user name.
  *      - in: body
  *        name: user
  *        description: New user
@@ -120,7 +115,7 @@ router.post('/register', async (req, res) => {
 
 /**
  * @swagger
- * /posts/{userName}:
+ * /users/{userName}:
  *   delete:
  *     parameters:
  *      - in: path

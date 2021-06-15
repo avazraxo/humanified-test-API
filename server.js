@@ -36,7 +36,7 @@ app.use('/users', user)
 app.use(errorHandler);
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
 app.listen(process.env.PORT || 5000, () => console.log('Up and running'));

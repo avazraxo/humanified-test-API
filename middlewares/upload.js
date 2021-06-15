@@ -8,8 +8,6 @@ const storage = multer.diskStorage({
     cb(null, appDir + "/resources/static/assets/uploads/");
   },
   filename: (req, file, cb) => {
-    console.log(appDir);
-    console.log(file.originalname);
     cb(null, file.originalname);
   },
 });

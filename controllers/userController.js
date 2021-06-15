@@ -22,7 +22,7 @@ async function authenticate({ userName, password }) {
         const user = await User.findOne({ userName });
         
         if (user && bcrypt.compareSync(password, user.hash)) {
-            const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '7d' });
+            const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '1h' });
             return {
                 ...user.toJSON(),
                 token
