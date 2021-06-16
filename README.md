@@ -20,3 +20,6 @@ $ git clone https://github.com/ivigbe/humanified-test-API
 $ npm run dev
 ```
 - Wait until the server is connected to the MongoDB cluster. A message will appear in the terminal.
+
+## API Documentation
+Once you setup the project, the API documentation is located in the endpoint `/api-docs`. If you are running the server locally, the url is `http://localhost:5000/api-docs`.
