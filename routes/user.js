@@ -4,7 +4,7 @@ let { getUserByUserName, addUser, removeUser, authenticate } = require('../contr
 
 /**
  * @swagger
- * /users/authenticate:
+ * /api/v1/users/authenticate:
  *   get:
  *     parameters:
  *      - in: body
@@ -37,7 +37,7 @@ router.post('/authenticate', async (req, res) => {
 
 /**
  * @swagger
- * /users/{userName}:
+ * /api/v1/users/{userName}:
  *   get:
  *     parameters:
  *      - in: path
@@ -66,7 +66,7 @@ router.get('/:userName', async (req, res) => {
 
 /**
  * @swagger
- * /users/register:
+ * /api/v1/users/register:
  *   post:
  *     parameters:
  *      - in: body
@@ -115,7 +115,7 @@ router.post('/register', async (req, res) => {
 
 /**
  * @swagger
- * /users/{userName}:
+ * /api/v1/users/{userName}:
  *   delete:
  *     parameters:
  *      - in: path

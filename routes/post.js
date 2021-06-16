@@ -5,7 +5,7 @@ const { getAllPosts, getPostById, addPost, removePost, buildFiles } = require('.
 
 /**
  * @swagger
- * /posts:
+ * /api/v1/posts:
  *   get:
  *     description: All posts
  *     responses:
@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 
 /**
  * @swagger
- * /posts/{id}:
+ * /api/v1/posts/{id}:
  *   get:
  *     parameters:
  *      - in: path
@@ -54,7 +54,7 @@ router.get('/:id', async (req, res) => {
 
 /**
  * @swagger
- * /posts/{id}:
+ * /api/v1/posts/{id}:
  *   post:
  *     consumes:
  *      - multipart/form-data
@@ -106,7 +106,7 @@ router.post('/:id', uploadFile.array('files', 10), async (req, res) => {
 
 /**
  * @swagger
- * /posts/{id}:
+ * /api/v1/posts/{id}:
  *   delete:
  *     parameters:
  *      - in: path

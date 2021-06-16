@@ -35,8 +35,8 @@ async function authenticate({ userName, password }) {
 }
 
 async function addUser(body) {
-    if (await User.findOne({ username: body.username })) {
-        throw new Error(`User name ${body.username} is already taken`);
+    if (await User.findOne({ userName: body.userName })) {
+        throw new Error(`User name ${body.userName} is already taken`);
     }
     
     const newUser = new User(body);

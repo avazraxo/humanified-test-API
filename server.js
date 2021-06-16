@@ -30,8 +30,8 @@ const swaggerOptions = {
     ]
 }
 
-app.use('/posts', post)
-app.use('/users', user)
+app.use('/api/v1/posts', post)
+app.use('/api/v1/users', user)
 
 app.use(errorHandler);
 
