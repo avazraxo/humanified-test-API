@@ -39,4 +39,4 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
-app.listen(process.env.PORT || 5000, () => console.log('Up and running'));
+app.listen(process.env.PORT || 7070, () => console.log('Up and running'));
